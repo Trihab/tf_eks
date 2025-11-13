@@ -12,7 +12,7 @@ resource "aws_vpc" "main_vpc" {
 ## ---------- Security Group ----------
 
 resource "aws_security_group" "allow_requirements_sg" {
-    name = "allow_ssh"
+    name = "allow_requirements"
     description = "SG to allow SSH inbound traffic and outbound traffic"
     vpc_id = aws_vpc.main_vpc.id
 

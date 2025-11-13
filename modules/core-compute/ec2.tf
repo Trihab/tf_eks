@@ -3,6 +3,7 @@ resource "aws_instance" "ec2" {
   ami           = var.image_id
   instance_type = var.vm_type
   count         = var.instance_count
+  security_groups = [aws_security_group.allow_requirements_sg.name]
 
   tags = {
     Name = "vm-micro"
