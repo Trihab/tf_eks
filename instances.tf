@@ -11,6 +11,7 @@ data "aws_ami" "ami_search" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
+  owners = [ "137112412989" ]
 }
 
 ## Deploy VPC, Network Configuration, Security groups and EC2 instance

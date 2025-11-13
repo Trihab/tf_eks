@@ -5,6 +5,6 @@ resource "aws_instance" "ec2" {
   count         = var.instance_count
 
   tags = {
-    Name = "JacksBlogExample"
+    Name = "vm-micro"
   }
 }
