@@ -27,6 +27,7 @@ resource "aws_subnet" "subnet_public_a" {
 
   tags = {
     Name = "Public Subnet A"
+    Class = "Public"
   }
 }
 
@@ -41,6 +42,7 @@ resource "aws_subnet" "subnet_public_b" {
 
   tags = {
     Name = "Public Subnet B"
+    Class = "Public"
   }
 }
 
@@ -55,6 +57,7 @@ resource "aws_subnet" "subnet_public_c" {
 
   tags = {
     Name = "Public Subnet C"
+    Class = "Public"
   }
 }
 

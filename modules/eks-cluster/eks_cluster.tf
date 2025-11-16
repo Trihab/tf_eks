@@ -5,8 +5,15 @@ data "aws_vpc" "selected" {
   }
 }
 
-data "aws_subnet_ids" "my_subnets_ids" {
-  vpc_id = data.aws_vpc.selected.id
+data "aws_subnets" "my_subnets_ids" {
+  filter {
+    name = "vpc_id"
+    values = [ data.aws_vpc.selected.id ]
+  }
+
+  tags = {
+    "Class" = "Private"
+  }
 }
 
 resource "aws_eks_cluster" "eks_cluster" {
@@ -15,7 +22,7 @@ resource "aws_eks_cluster" "eks_cluster" {
   version  = "1.31"
 
   vpc_config {
-    subnet_ids = []
+    subnet_ids = data.aws_subnets.my_subnets_ids.ids
   }
 
   depends_on = [ aws_iam_role_policy_attachment.eks_cluster_policy ]

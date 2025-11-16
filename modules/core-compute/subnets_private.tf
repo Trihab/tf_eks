@@ -35,6 +35,7 @@ resource "aws_subnet" "subnet_private_a" {
 
   tags = {
     Name = "Private Subnet A"
+    Class = "Private"
   }
 }
 
@@ -49,6 +50,7 @@ resource "aws_subnet" "subnet_private_b" {
 
   tags = {
     Name = "Private Subnet B"
+    Class = "Private"
   }
 }
 
@@ -63,6 +65,7 @@ resource "aws_subnet" "subnet_private_c" {
 
   tags = {
     Name = "Private Subnet C"
+    Class = "Private"
   }
 }
 

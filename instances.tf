@@ -26,6 +26,8 @@ module "core-compute" {
 
 module "eks_cluster" {
   source = "./modules/eks-cluster"
+
+  depends_on = [ module.core-compute ]
 }
 
 ## Deploy IAM Role to a service
