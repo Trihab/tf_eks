@@ -11,18 +11,22 @@ data "aws_ami" "ami_search" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-  owners = [ "137112412989" ]
+  owners = ["137112412989"]
 }
 
 ## Deploy VPC, Network Configuration, Security groups and EC2 instance
 module "core-compute" {
-  source = "./modules/core-compute"
-  image_id = data.aws_ami.ami_search.id
-  vm_type = "t2.micro"
+  source         = "./modules/core-compute"
+  image_id       = data.aws_ami.ami_search.id
+  vm_type        = "t2.micro"
   instance_count = 1
 }
 
 ## Deploy EKS
+
+module "eks_cluster" {
+  source = "./modules/eks-cluster"
+}
 
 ## Deploy IAM Role to a service
 
