@@ -1,4 +1,6 @@
-data "aws_region" "current" {}
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 
 variable "image_id" {
   type = string

@@ -32,7 +32,7 @@ resource "aws_route_table" "private_rt" {
 resource "aws_subnet" "subnet_private_a" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.10.0/24"
-  availability_zone = "${data.aws_region.current.region}a"
+  availability_zone = "${data.aws_availability_zones.available.names[0]}"
 
   tags = {
     Name = "Private Subnet A"
@@ -48,7 +48,7 @@ resource "aws_route_table_association" "subnet_private_rta_a" {
 resource "aws_subnet" "subnet_private_b" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.20.0/24"
-  availability_zone = "${data.aws_region.current.region}b"
+  availability_zone = "${data.aws_availability_zones.available.names[1]}"
 
   tags = {
     Name = "Private Subnet B"
@@ -64,7 +64,7 @@ resource "aws_route_table_association" "subnet_private_rta_b" {
 resource "aws_subnet" "subnet_private_c" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.30.0/24"
-  availability_zone = "${data.aws_region.current.region}a"
+  availability_zone = "${data.aws_availability_zones.available.names[0]}"
 
   tags = {
     Name = "Private Subnet C"
