@@ -1,3 +1,5 @@
+data "aws_region" "current" {}
+
 variable "image_id" {
   type = string
   description = "OS image id"
