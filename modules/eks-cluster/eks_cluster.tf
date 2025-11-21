@@ -19,7 +19,7 @@ data "aws_subnets" "my_subnets_ids" {
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
-  version  = "1.32"
+  version  = "1.34"
 
   vpc_config {
     subnet_ids = data.aws_subnets.my_subnets_ids.ids
