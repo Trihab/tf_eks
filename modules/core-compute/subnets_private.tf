@@ -21,7 +21,7 @@ resource "aws_route_table" "private_rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
+    gateway_id = aws_nat_gateway.nat_gw.id
   }
 
   tags = {
@@ -64,7 +64,7 @@ resource "aws_route_table_association" "subnet_private_rta_b" {
 resource "aws_subnet" "subnet_private_c" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.30.0/24"
-  availability_zone = "${data.aws_availability_zones.available.names[0]}"
+  availability_zone = length(data.aws_availability_zones.available.names) > 2 ? "${data.aws_availability_zones.available.names[2]}" : "${data.aws_availability_zones.available.names[0]}"
 
   tags = {
     Name = "Private Subnet C"

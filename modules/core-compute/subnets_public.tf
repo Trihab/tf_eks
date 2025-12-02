@@ -25,6 +25,7 @@ resource "aws_subnet" "subnet_public_a" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.1.0/24"
   availability_zone = "${data.aws_availability_zones.available.names[0]}"
+  map_public_ip_on_launch = "true"
 
   tags = {
     Name = "Public Subnet A"
@@ -41,6 +42,7 @@ resource "aws_subnet" "subnet_public_b" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.2.0/24"
   availability_zone = "${data.aws_availability_zones.available.names[1]}"
+  map_public_ip_on_launch = "true"
 
   tags = {
     Name = "Public Subnet B"
@@ -56,7 +58,8 @@ resource "aws_route_table_association" "subnet_public_rta_b" {
 resource "aws_subnet" "subnet_public_c" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.3.0/24"
-  availability_zone = "${data.aws_availability_zones.available.names[0]}"
+  availability_zone = length(data.aws_availability_zones.available.names) > 2 ? "${data.aws_availability_zones.available.names[2]}" : "${data.aws_availability_zones.available.names[0]}"
+  map_public_ip_on_launch = "true"
 
   tags = {
     Name = "Public Subnet C"

@@ -4,7 +4,9 @@ resource "aws_instance" "ec2" {
   instance_type = var.vm_type
   count         = var.instance_count
   vpc_security_group_ids = [aws_security_group.allow_requirements_sg.id]
-  subnet_id = aws_subnet.subnet_private_a.id
+  subnet_id = aws_subnet.subnet_public_a.id
+  ebs_optimized = "true"
+  associate_public_ip_address = "true"
 
   tags = {
     Name = "vm-micro"
