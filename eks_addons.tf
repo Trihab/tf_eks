@@ -18,6 +18,7 @@ resource "aws_eks_addon" "eks_ao_coredns" {
   addon_name                  = "coredns"
   addon_version               = data.aws_eks_addon_version.latest_coredns.version
   resolve_conflicts_on_update = "PRESERVE"
+  depends_on = [ aws_eks_node_group.eks_node_ec2 ]
 }
 
 resource "aws_eks_addon" "eks_ao_vpc-cni" {
