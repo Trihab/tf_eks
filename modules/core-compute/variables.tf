@@ -1,7 +1,3 @@
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
 variable "image_id" {
   type = string
   description = "OS image id"

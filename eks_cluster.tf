@@ -52,6 +52,7 @@ resource "aws_eks_node_group" "eks_node_ec2" {
     max_size     = 3
     min_size     = 1
   }
+  
   ami_type       = "AL2023_x86_64_STANDARD"
   instance_types = ["t2.micro"]
   capacity_type  = "ON_DEMAND"
