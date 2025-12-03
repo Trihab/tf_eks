@@ -1,34 +1,3 @@
-# Fetch VPC and Subnets informations
-data "aws_vpc" "selected" {
-  tags = {
-    "Name" = "main_vpc"
-  }
-
-  depends_on = [ module.core-compute ]
-}
-
-data "aws_subnets" "my_public_subnets_ids" {
-  filter {
-    name = "vpc-id"
-    values = [ data.aws_vpc.selected.id ]
-  }
-
-  tags = {
-    "Class" = "Public"
-  }
-}
-
-data "aws_subnets" "my_private_subnets_ids" {
-  filter {
-    name = "vpc-id"
-    values = [ data.aws_vpc.selected.id ]
-  }
-
-  tags = {
-    "Class" = "Private"
-  }
-}
-
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
