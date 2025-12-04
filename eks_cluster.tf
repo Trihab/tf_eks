@@ -1,10 +1,12 @@
+## Deploy EKS Cluster
+
 resource "aws_eks_cluster" "eks_cluster" {
   name     = "eks-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
   version  = "1.34"
 
   vpc_config {
-    subnet_ids = concat(data.aws_subnets.my_private_subnets_ids.ids,data.aws_subnets.my_public_subnets_ids.ids)
+    subnet_ids = concat(module.core-compute.priv_subnets_ids.ids,module.core-compute.pub_subnets_ids.ids)
   }
 
   depends_on = [ aws_iam_role_policy_attachment.eks_cluster_policy ]
@@ -14,7 +16,7 @@ resource "aws_eks_node_group" "eks_node_ec2" {
   cluster_name    = aws_eks_cluster.eks_cluster.name
   node_group_name = "t2_micro-node_group"
   node_role_arn   = aws_iam_role.eks_node_group_role.arn
-  subnet_ids      = data.aws_subnets.my_private_subnets_ids.ids
+  subnet_ids      = module.core-compute.priv_subnets_ids.ids
 
   scaling_config {
     desired_size = 2

@@ -1,18 +1,6 @@
-output "eip_out" {
-  value     = module.core-compute.eip_out
+output "ec2_ip" {
+  value     = module.core-compute.ec2_ippub
   sensitive = false
-}
-
-output "vpc_return" {
-  value = data.aws_vpc.selected.id
-}
-
-output "priv_sub_return" {
-  value = data.aws_subnets.my_private_subnets_ids.ids
-}
-
-output "pub_sub_return" {
-  value = data.aws_subnets.my_public_subnets_ids.ids
 }
 
 output "coredns_version" {

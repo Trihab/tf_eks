@@ -1,5 +1,6 @@
 ## Source : https://dev.to/aws-builders/creating-an-eks-cluster-and-node-group-with-terraform-1lf6
 
+## Deploy IAM Role
 
 # Kubernetes clusters managed by Amazon EKS make calls to other AWS services on your behalf to manage the resources that you use with the service
 resource "aws_iam_role" "eks_cluster_role" {

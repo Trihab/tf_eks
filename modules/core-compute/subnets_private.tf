@@ -29,6 +29,7 @@ resource "aws_route_table" "private_rt" {
   }
 }
 
+
 resource "aws_subnet" "subnet_private_a" {
   vpc_id     = aws_vpc.main_vpc.id
   cidr_block = "10.2.10.0/24"

@@ -1,3 +1,5 @@
+## Deploy Addons
+
 resource "aws_eks_addon" "eks_ao_coredns" {
   cluster_name                = aws_eks_cluster.eks_cluster.name
   addon_name                  = "coredns"
