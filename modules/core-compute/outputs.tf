@@ -1,5 +1,5 @@
 output "ec2_ippub" {
-  value = aws_instance.ec2.public_ip
+  value     = aws_instance.ec2.*.public_ip
   sensitive = false
 }
 
