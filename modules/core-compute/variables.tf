@@ -1,14 +1,16 @@
 variable "image_id" {
-  type = string
+  type        = string
   description = "OS image id"
 }
 
 variable "vm_type" {
-  type = string
+  type        = string
   description = "VM type (eg. t2.micro)"
+  default     = "t2.micro"
 }
 
 variable "instance_count" {
-  type = number
+  type        = number
   description = "How many instances you want"
+  default     = 1
 }

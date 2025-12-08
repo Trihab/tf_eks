@@ -12,7 +12,7 @@ resource "aws_nat_gateway" "nat_gw" {
 }
 
 resource "aws_eip" "eip_nat" {
-  domain = "vpc"
+  domain     = "vpc"
   depends_on = [aws_internet_gateway.igw]
 }
 
@@ -31,12 +31,12 @@ resource "aws_route_table" "private_rt" {
 
 
 resource "aws_subnet" "subnet_private_a" {
-  vpc_id     = aws_vpc.main_vpc.id
-  cidr_block = "10.2.10.0/24"
-  availability_zone = "${data.aws_availability_zones.available.names[0]}"
+  vpc_id            = aws_vpc.main_vpc.id
+  cidr_block        = "10.2.10.0/24"
+  availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = {
-    Name = "Private Subnet A"
+    Name  = "Private Subnet A"
     Class = "Private"
   }
 }
@@ -47,12 +47,12 @@ resource "aws_route_table_association" "subnet_private_rta_a" {
 }
 
 resource "aws_subnet" "subnet_private_b" {
-  vpc_id     = aws_vpc.main_vpc.id
-  cidr_block = "10.2.20.0/24"
-  availability_zone = "${data.aws_availability_zones.available.names[1]}"
+  vpc_id            = aws_vpc.main_vpc.id
+  cidr_block        = "10.2.20.0/24"
+  availability_zone = data.aws_availability_zones.available.names[1]
 
   tags = {
-    Name = "Private Subnet B"
+    Name  = "Private Subnet B"
     Class = "Private"
   }
 }
@@ -63,12 +63,12 @@ resource "aws_route_table_association" "subnet_private_rta_b" {
 }
 
 resource "aws_subnet" "subnet_private_c" {
-  vpc_id     = aws_vpc.main_vpc.id
-  cidr_block = "10.2.30.0/24"
+  vpc_id            = aws_vpc.main_vpc.id
+  cidr_block        = "10.2.30.0/24"
   availability_zone = length(data.aws_availability_zones.available.names) > 2 ? "${data.aws_availability_zones.available.names[2]}" : "${data.aws_availability_zones.available.names[0]}"
 
   tags = {
-    Name = "Private Subnet C"
+    Name  = "Private Subnet C"
     Class = "Private"
   }
 }
