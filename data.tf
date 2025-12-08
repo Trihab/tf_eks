@@ -52,7 +52,7 @@ data "aws_ami" "ami_search" {
 
   filter {
     name   = "name"
-    values = ["al2023-ami-2023.*6.1-x86_64"]
+    values = ["al2023-ami*6.1-x86_64"]
   }
 
   filter {
