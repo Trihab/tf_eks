@@ -15,16 +15,36 @@ key = "<FILENAME>"
 use_lockfile = <true / false>
 ```
 
-### Plan deploy
+## Download pre requisite
 
+You need to download `kubectl` and `eksctl`. 
+
+#### Kubectl
+
+Just run : 
 ```bash
-terraform plan
+sudo apt install kubectl
 ```
 
-### Apply deployment
+#### Eksctl
+
+Run the following:
 
 ```bash
-terraform apply --auto-approve
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
+
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+
+# Checksum check
+curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+
+sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
+
+# Enable completion on bash
+. <(eksctl completion bash)
 ```
 
 ## How to test EC2 instance ?
@@ -76,10 +96,9 @@ make destroy
 ```
 
 
-
-
-
 #### Sources
 
 - https://stackoverflow.com/questions/52040798/terraform-outputs-for-resources-with-count
 - https://stackoverflow.com/questions/2214575/passing-arguments-to-make-run
+- https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_attachment
+- https://spacelift.io/blog/terraform-alb

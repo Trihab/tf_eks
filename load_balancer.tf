@@ -1,10 +1,10 @@
 ## Deploy LB
 resource "aws_lb" "app_lb" {
-  name               = "app-lb-tf"
-  internal           = false
-  load_balancer_type = "application"
-  subnets            = module.core-compute.pub_subnets_ids
-  security_groups    = [aws_security_group.allow_http_lb.id]
+  name                       = "app-lb-tf"
+  internal                   = false
+  load_balancer_type         = "application"
+  subnets                    = module.core-compute.pub_subnets_ids
+  security_groups            = [aws_security_group.allow_http_lb.id]
   enable_deletion_protection = false
 
   #   access_logs {
@@ -30,10 +30,10 @@ resource "aws_lb_listener" "lb_listener" {
 }
 
 resource "aws_lb_target_group" "eks_nodes" {
-  name     = "eks-nodes-tg"
-  port     = 30080
-  protocol = "HTTP"
-  vpc_id   = module.core-compute.vpc_id
+  name        = "eks-nodes-tg"
+  port        = 30080
+  protocol    = "HTTP"
+  vpc_id      = module.core-compute.vpc_id
   target_type = "instance"
 
   health_check {
