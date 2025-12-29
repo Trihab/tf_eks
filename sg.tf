@@ -21,3 +21,15 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_out" {
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
 }
+
+resource "aws_security_group_rule" "allow_lb_nodes" {
+  description = "Allow LB to forward traffic to EKS Nodes"
+  type        = "ingress"
+
+  from_port = 30080
+  to_port   = 30080
+  protocol  = "tcp"
+
+  source_security_group_id = aws_security_group.allow_http_lb.id
+  security_group_id        = aws_eks_cluster.eks_cluster.vpc_config[0].cluster_security_group_id
+}

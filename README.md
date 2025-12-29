@@ -105,6 +105,12 @@ You need to run the command like this:
 make kubeconfig REGION="eu-west-3" NAME="my-cluster"
 ```
 
+## Deploy Nginx service on EKS Cluster
+
+I created a YAML file to deploy my Nginx service. It is located in the deployments folder. It describe the deployment (number of replicas, images) and the service (ingress type, ports).
+You must have kubectl set up if you want to deploy it. Then, run : `kubectl apply -f <path_to_file>`. When it is done, you can check the service is running with `kubectl get svc`.
+
+Open a web browser and paste the Load Balancer URL into the address bar (can be found in terraform output). This will take you to the Nginx homepage.
 
 #### Sources
 

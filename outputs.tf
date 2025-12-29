@@ -14,3 +14,7 @@ output "vpccni_version" {
 output "kubeproxy_version" {
   value = data.aws_eks_addon_version.latest_kubeproxy.version
 }
+
+output "lb_url" {
+  value = aws_lb.app_lb.dns_name
+}
