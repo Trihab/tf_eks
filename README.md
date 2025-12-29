@@ -95,6 +95,16 @@ To do a `terraform destroy` use:
 make destroy
 ```
 
+## Access Kubernetes Cluster
+
+In order to use kubectl binary, you need to use a kubeconfig to reach the API of your cluster.
+I added a command in the Makefile to create or update your kubeconfig with the specified cluster. Then it will run `kubectl get nodes` to check if the link is well established.
+You need to run the command like this:
+
+```bash
+make kubeconfig REGION="eu-west-3" NAME="my-cluster"
+```
+
 
 #### Sources
 
@@ -102,3 +112,4 @@ make destroy
 - https://stackoverflow.com/questions/2214575/passing-arguments-to-make-run
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_attachment
 - https://spacelift.io/blog/terraform-alb
+- https://docs.aws.amazon.com/fr_fr/eks/latest/userguide/create-kubeconfig.html

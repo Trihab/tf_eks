@@ -1,5 +1,5 @@
 ## Declare all commands
-.PHONY: init plan apply destroy fmt validate
+.PHONY: init plan apply destroy fmt validate kubeconfig
 
 init:
 	terraform init -backend-config="$(ARGS)"
@@ -23,3 +23,9 @@ apply: fmt validate
 destroy: validate
 	@echo "Destroying infrastructure..."
 	terraform destroy -auto-approve
+
+kubeconfig:
+	@echo "Creating Kubeconfig..."
+	aws eks update-kubeconfig --region $(REGION) --name $(NAME)
+	@echo "Listing Nodes..."
+	kubectl get nodes
