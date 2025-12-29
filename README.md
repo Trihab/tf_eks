@@ -132,3 +132,4 @@ Open a web browser and paste the Load Balancer URL into the address bar (can be 
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_attachment
 - https://spacelift.io/blog/terraform-alb
 - https://docs.aws.amazon.com/fr_fr/eks/latest/userguide/create-kubeconfig.html
+- https://dev.to/aws-builders/creating-an-eks-cluster-and-node-group-with-terraform-1lf6
