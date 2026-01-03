@@ -17,7 +17,7 @@ use_lockfile = <true / false>
 
 ## Download pre requisite
 
-You need to download `aws cli`, `kubectl` and `eksctl`. The following sections apply on Linux machine.
+You need to download `aws cli`, `kubectl` and `eksctl`. The following sections apply to Linux machines.
 
 #### AWS CLI
 
